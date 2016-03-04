@@ -34,8 +34,8 @@ public class Tovar {
 	@OneToMany(cascade =CascadeType.ALL, fetch= FetchType.LAZY,mappedBy="tovar"/*targetEntity=TovarAmount.class*/)
 	private List<TovarAmount> tovarAmounts;//���������� ������ �� ���� ����� ID(��� OneToMany)
 	
-	Tovar(){};
-	Tovar(String model,double price,int amount){
+	public Tovar(){};
+	public Tovar(String model,double price,int amount){
 		this.modelName=model;
 		this.price=price;
 		this.amountSklad=amount;

@@ -34,9 +34,9 @@ public class Manufacturer {
 	@OneToMany(cascade =CascadeType.ALL, fetch= FetchType.LAZY,mappedBy="manufacturer")
 	private List<Tovar> tovars;//�������-��������� (ManyToMany)
 
-	Manufacturer(){};
+	public Manufacturer(){};
 	
-	Manufacturer(String name){
+	public Manufacturer(String name){
 		this.name=name;
 	};
 	

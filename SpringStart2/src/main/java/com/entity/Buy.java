@@ -33,8 +33,8 @@ public class Buy {
 	@Column (name = "data_buy")
 	private String date;
 	
-	Buy(){};
-	Buy(String data){
+	public Buy(){};
+	public Buy(String data){
 		this.date=data;
 	}
 

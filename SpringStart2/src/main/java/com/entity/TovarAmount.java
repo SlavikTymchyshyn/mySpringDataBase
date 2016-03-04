@@ -39,8 +39,8 @@ public class TovarAmount {
 	@JoinColumn(name = "fk_buy"))
 	private List<Buy> buys;
 
-	TovarAmount(){}; // �� ����� ��� ����� ������ �� ���� ���� � �����
-	TovarAmount(int amount){
+	public TovarAmount(){}; // �� ����� ��� ����� ������ �� ���� ���� � �����
+	public TovarAmount(int amount){
 		this.amount=amount;
 		
 //		if(this.tovar.getAmountSklad()>0){
