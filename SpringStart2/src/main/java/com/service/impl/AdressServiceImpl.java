@@ -26,11 +26,11 @@ public class AdressServiceImpl implements AdressService{
 
 	@Override
 	public Adress getByNameAdress(String name) {
-		return adressRepository.findByNameAdress(name);
+		return adressRepository.findByNameAdress(name);		//mozhna jak realizaciju z adressRepository
 	}
 
 	@Override
-	public Adress editAdress(Adress adress) {
+	public Adress editAdress(Adress adress) {		//tak mozhna update?
 		return adressRepository.save(adress);
 	}
 
