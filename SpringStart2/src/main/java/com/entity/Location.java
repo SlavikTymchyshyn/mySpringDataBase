@@ -1,6 +1,7 @@
 package com.entity;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,8 +34,11 @@ public class Location {
 	@JoinColumn(name = "fk_phone"))	
 	private List<Phone> phones;
 	
-	@ManyToOne
-	private Site site;
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinTable(name="location_site",joinColumns=
+	@JoinColumn(name="fk_location"),inverseJoinColumns = 
+	@JoinColumn(name = "fk_site"))	
+	private List<Site> sites;
 				
 	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinTable(name="manufacturer_location",joinColumns=
@@ -42,9 +46,13 @@ public class Location {
 	@JoinColumn(name = "fk_manufacturer"))	
 	private List<Manufacturer> manufacturers;//�������-��������� �� manufacturers(ManyToMany)
 
-	public List<Phone> createList(){
-		this.phones=new ArrayList<>();
+	public List<Phone> createListPhone(){
+		this.phones=new LinkedList<>();
 		return this.phones;
+	}
+	public List<Site> createListSite(){
+		this.sites=new LinkedList<>();
+		return this.sites;
 	}
 	
 	public int getId() {
@@ -80,12 +88,14 @@ public class Location {
 		this.phones = phones;
 	}
 
-	public Site getSite() {
-		return site;
+	
+
+	public List<Site> getSites() {
+		return sites;
 	}
 
-	public void setSite(Site site) {
-		this.site = site;
+	public void setSites(List<Site> sites) {
+		this.sites = sites;
 	}
 
 	public List<Manufacturer> getManufacturers() {
@@ -99,7 +109,7 @@ public class Location {
 	@Override
 	public String toString() {
 		return "Location [id=" + id + ", country=" + country + ", adress="
-				+ adress + ", site=" + site + "]";
+				+ adress + "]";
 	}
 	
 	

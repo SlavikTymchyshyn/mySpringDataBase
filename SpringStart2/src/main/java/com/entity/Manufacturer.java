@@ -58,12 +58,14 @@ public class Manufacturer {
 		this.name = name;
 	}
 	
-	public List<Location> getLocation() {
+	
+
+	public List<Location> getLocations() {
 		return locations;
 	}
 
-	public void setLocation(List<Location> location) {
-		this.locations = location;
+	public void setLocations(List<Location> locations) {
+		this.locations = locations;
 	}
 
 	public List<Tovar> getTovars() {

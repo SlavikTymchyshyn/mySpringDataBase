@@ -1,21 +1,23 @@
 package com.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.Adress;
 import com.repository.AdressRepository;
 import com.service.AdressService;
 
+@Service
 public class AdressServiceImpl implements AdressService{
 
 	@Autowired
     private AdressRepository adressRepository;
 	
 	@Override
-	public Adress addAdress(Adress adress) {
-		Adress savedAdress = adressRepository.save(adress);
+	public Adress addAdress(String name) {
+		Adress savedAdress=new Adress(name);
+		adressRepository.save(savedAdress);
 	    return savedAdress;
 	}
 
@@ -30,13 +32,20 @@ public class AdressServiceImpl implements AdressService{
 	}
 
 	@Override
-	public Adress editAdress(Adress adress) {		//tak mozhna update?
-		return adressRepository.save(adress);
+	public Adress editAdress(String name) {		//tak mozhna update?
+		Adress savedAdress=new Adress(name);
+		if(savedAdress.getId()==0) 
+		return adressRepository.save(savedAdress);
+		else{
+			adressRepository.save(savedAdress);
+		}
+		return savedAdress;
 	}
 
 	@Override
-	public List<Adress> getAll() {
-		return (List<Adress>) adressRepository.findAll();  //treba???????
+	@Transactional
+	public Iterable<Adress> getAll() {
+		return adressRepository.findAll();  //treba???????
 	}
 
 }

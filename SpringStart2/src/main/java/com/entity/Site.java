@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,7 +24,10 @@ public class Site {
 	@Column(name = "site_name")// ������������ ��� �������� ��� ���� ����� ���������
 	private String nameSite;
 //	CascadeType.ALL - �������� ������ �� ������ � ��� � ���� ������ ����
-	@OneToMany(cascade =CascadeType.ALL, fetch= FetchType.LAZY,mappedBy="site")
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinTable(name="location_site",joinColumns=
+	@JoinColumn(name="fk_site"),inverseJoinColumns = 
+	@JoinColumn(name = "fk_location"))
 	private List<Location> locations;
 
 	public Site(){};
