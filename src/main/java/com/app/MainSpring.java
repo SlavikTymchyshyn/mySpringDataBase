@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.*;
 import com.repository.*;
 
 public class MainSpring {
-	
 	
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = new 
@@ -174,7 +174,7 @@ public class MainSpring {
 		List<Customer> lc=new LinkedList<>(
 				Arrays.asList(c1,c2,c3,admin,c4));
 		customerRep.save(lc);
-		
+				
 		LocationRepository locationRep =(LocationRepository) context.getBean("locationRepository");
 		Location l1=new Location();
 		l1.setAdress(adressRep.findOne(1));
