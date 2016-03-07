@@ -23,7 +23,7 @@ public class MainSpring {
 //		adressRep.save(iterable or object);//shows all what are in table
 		
 		
-		adressRep.save(new Adress("adress 1"));
+//		adressRep.save(new Adress("adress 1"));
 //		System.out.println(adressRep.findByNameAdress("adress 1"));//для одного результату
 //		System.out.println(adressRep.findListByNameAdress("adress 1"));//List значень
 		

@@ -11,4 +11,7 @@ import com.entity.Buy;
 public interface BuyRepository extends CrudRepository<Buy, Integer>{
 	List<Buy> findByTovarAmountsTovarModelName(String modName);
 	List<Buy> findByTovarAmountsTovarCategoryName(String catName);
+	List<Buy> findByCustomerMailName(String mailname);
+	List<Buy> findByDate(String date);
+	
 }

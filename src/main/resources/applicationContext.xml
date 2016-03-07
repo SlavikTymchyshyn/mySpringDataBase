@@ -19,7 +19,8 @@
     </context:component-scan>
 
     <!-- Data config holder -->
-    <bean id="propertyConfigurer"		 <!-- for configuration DataBase in file db.properties -->
+	 <!-- for configuration DataBase in file db.properties -->
+    <bean id="propertyConfigurer"	
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
         p:location="db.properties" />
 

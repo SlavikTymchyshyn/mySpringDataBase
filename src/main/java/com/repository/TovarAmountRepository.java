@@ -7,5 +7,5 @@ import com.entity.TovarAmount;
 
 @Repository
 public interface TovarAmountRepository extends CrudRepository<TovarAmount, Integer>{
-
+	TovarAmount findById(int id);
 }
