@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.entity.Tovar;
 
-@Repository
+
 public interface TovarRepository extends CrudRepository<Tovar, Integer>{
 	Tovar findById(int id);
 }

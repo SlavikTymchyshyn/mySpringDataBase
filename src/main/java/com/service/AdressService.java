@@ -1,11 +1,13 @@
 package com.service;
 
+import java.util.List;
+
 import com.entity.Adress;
 
 public interface AdressService {
-	Adress addAdress(String name);
+	void addAdress(String name);
     void delete(int id);
     Adress getByNameAdress(String name);
-    Adress editAdress(String name);
-    Iterable<Adress> getAll();
+    void updateAdress(String name);
+    List<Adress> getAllAdresses();
 }

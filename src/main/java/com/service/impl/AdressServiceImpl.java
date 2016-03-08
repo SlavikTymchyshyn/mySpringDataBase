@@ -1,51 +1,50 @@
 package com.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.entity.Adress;
 import com.repository.AdressRepository;
 import com.service.AdressService;
 
-@Service
+@Service("adressService")
 public class AdressServiceImpl implements AdressService{
 
 	@Autowired
-    private AdressRepository adressRepository;
+    private AdressRepository repo;
 	
 	@Override
-	public Adress addAdress(String name) {
-		Adress savedAdress=new Adress(name);
-		adressRepository.save(savedAdress);
-		  return savedAdress;
+	public void addAdress(String name) {
+		repo.insertAdress(name);
 	}
 
 	@Override
 	public void delete(int id) {
-		adressRepository.delete(id);
+		repo.delete(id);
 	}
 
 	@Override
 	public Adress getByNameAdress(String name) {
-		return adressRepository.findByNameAdress(name);		//mozhna jak realizaciju z adressRepository
+		return repo.findByNameAdress(name);		//mozhna jak realizaciju z adressRepository
 	}
 
 	@Override
-	public Adress editAdress(String name) {		//tak mozhna update?
-		Adress savedAdress=new Adress(name);
-		if(savedAdress.getId()==0) 
-		return adressRepository.save(savedAdress);
-		else{
-			adressRepository.save(savedAdress);
+	public void updateAdress(String name) {		//tak mozhna update?
+		Adress up=repo.findByNameAdress(name);
+		if(!up.equals(null)){
+			System.out.println("there already exists such name");
 		}
-		return savedAdress;
+		else{
+			repo.save(new Adress(name));
+		}
+		
 	}
 
 	@Override
-	@Transactional
-	public Iterable<Adress> getAll() {
-		return adressRepository.findAll();  //treba???????
+	public List<Adress> getAllAdresses() {
+		return repo.findAll();  //treba???????
 	}
 
 }

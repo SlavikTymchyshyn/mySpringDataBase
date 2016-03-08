@@ -14,11 +14,10 @@ public class SiteServiceImpl implements SiteService{
     private	SiteRepository siteRepository;
 
 	@Override
-	public Site addSite(String name) {
+	public void addSite(String name) {
 		Site siteadd=new Site(name);
 		siteRepository.save(siteadd);
-		return null;
-	}
+		}
 
 	@Override
 	public void delete(int id) {
@@ -33,11 +32,11 @@ public class SiteServiceImpl implements SiteService{
 
 	@Override
 	public Site editSite(String name) {
-		int idS;
+		
 		if (!siteRepository.findByNameSite(name).equals(null))
-		idS=siteRepository.findByNameSite(name).getId();
-		siteRepository.save(idS);
-		else return null;
+			return null;
+		else 
+		siteRepository.save(new Site(name));
 		return null;
 	}
 
