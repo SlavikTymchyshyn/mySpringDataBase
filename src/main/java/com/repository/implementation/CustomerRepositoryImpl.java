@@ -2,6 +2,9 @@ package com.repository.implementation;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 
 import com.entity.Customer;
@@ -11,7 +14,19 @@ import com.repository.CustomerRepository;
 
 @Repository
 public class CustomerRepositoryImpl implements CustomerRepository{
-
+	
+	@PersistenceContext(unitName = "Primary")		//kyda ce Primary vpysaty
+	private EntityManager em;
+	
+	public EntityManager getEm() {
+		return em;
+	}
+	
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+	
+	
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
@@ -112,6 +127,17 @@ public class CustomerRepositoryImpl implements CustomerRepository{
 	public List<Customer> findByRole(Role name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+//	@Override
+//	public void insertCustomer(String name) {
+//		em.persist(arg0);
+//	}
+
+	@Override
+	public void delete(String name) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

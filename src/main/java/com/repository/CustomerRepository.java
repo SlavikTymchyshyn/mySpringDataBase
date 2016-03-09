@@ -15,4 +15,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer>{
 	Customer findById(int iDname);
 	List<Customer> findBySex(Sex name);
 	List<Customer> findByRole(Role name);
+	//void insertCustomer(String name);		//treba?
+	void delete(String name);
 }

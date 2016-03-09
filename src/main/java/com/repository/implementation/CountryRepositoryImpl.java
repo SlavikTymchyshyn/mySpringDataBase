@@ -1,13 +1,44 @@
 package com.repository.implementation;
 
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.entity.Country;
 import com.repository.CountryRepository;
 
 @Repository
 public class CountryRepositoryImpl implements CountryRepository{
+	
+	private CountryRepository repo;
+		
+	public CountryRepository getRepo() {
+		return repo;
+	}
 
+	public void setRepo(CountryRepository repo) {
+		this.repo = repo;
+	}
+	
+	@Override
+	@Transactional
+	public Country findByNameCountry(String name) {
+		Country kraina=null;
+		for (Country country : repo.findAll()) {
+			if(country.getNameCountry().equalsIgnoreCase(name)){
+				kraina=country;
+				return kraina;
+			}else{return null;}
+		}
+		return kraina;
+	}
+	
+	@Override
+	@Transactional
+	public void insertCountry(String name) {
+		repo.save(new Country(name));
+	}
+	
+	
+	
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
@@ -74,10 +105,6 @@ public class CountryRepositoryImpl implements CountryRepository{
 		return null;
 	}
 
-	@Override
-	public Country findByNameCountry(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

@@ -11,5 +11,6 @@ public interface BuyRepository extends CrudRepository<Buy, Integer>{
 	List<Buy> findByTovarAmountsTovarCategoryName(String catName);
 	List<Buy> findByCustomerMailName(String mailname);
 	List<Buy> findByDate(String date);
+	List<Buy> findAll();
 	
 }

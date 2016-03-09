@@ -6,4 +6,5 @@ import com.entity.Country;
  
 public interface CountryRepository extends CrudRepository<Country, Integer>{
 	Country findByNameCountry(String name);
+	void insertCountry(String name);
 }

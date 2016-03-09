@@ -1,9 +1,22 @@
 package com.repository.implementation;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import com.entity.Site;
 import com.entity.Site;
 import com.repository.SiteRepository;
 
 public class SiteRepositoryImpl implements SiteRepository{
+
+	private SiteRepository repo;
+		
+	public SiteRepository getRepo() {
+		return repo;
+	}
+
+	public void setRepo(SiteRepository repo) {
+		this.repo = repo;
+	}
 
 	@Override
 	public long count() {
@@ -72,9 +85,22 @@ public class SiteRepositoryImpl implements SiteRepository{
 	}
 
 	@Override
+	@Transactional
 	public Site findByNameSite(String some) {
-		// TODO Auto-generated method stub
-		return null;
+		Site site=null;
+		for (Site sites : repo.findAll()) {
+			if(sites.getNameSite().equalsIgnoreCase(some)){
+				site=sites;
+				return site;
+			}else{return null;}
+		}
+		return site;
+	}
+
+	@Override
+	@Transactional
+	public void insertSite(String name) {
+		repo.save(new Site(name));
 	}
 
 }

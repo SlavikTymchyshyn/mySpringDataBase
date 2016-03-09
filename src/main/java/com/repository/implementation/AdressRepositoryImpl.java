@@ -11,35 +11,21 @@ import com.repository.AdressRepository;
 @Repository
 public class AdressRepositoryImpl implements AdressRepository{
 	
-	AdressRepository repo;
+	private AdressRepository repo;
 	
-	@Override
-	public long count() {
-		return repo.count();
+	public AdressRepository getRepo() {
+		return repo;
 	}
 
-	@Override
-	public void delete(Integer id) {
-		repo.delete(id);
+	public void setRepo(AdressRepository repo) {
+		this.repo = repo;
 	}
-
-	@Override
-	public void delete(Adress adr) {
-		repo.delete(adr);
-	}
-	
-	@Override
-	public void deleteAll() {
-		repo.deleteAll();
-	}
-	
 	
 	@Override
 	@Transactional
 	public Adress findByNameAdress(String nameAdress) {
 		Adress a=null;
-		Iterable <Adress> Ia=repo.findAll();
-		for (Adress adress : Ia) {
+		for (Adress adress : repo.findAll()) {
 			if(adress.getNameAdress().equalsIgnoreCase(nameAdress)){
 				a=adress;
 				return a;
@@ -94,7 +80,25 @@ public class AdressRepositoryImpl implements AdressRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public long count() {
+		return repo.count();
+	}
 
+	@Override
+	public void delete(Integer id) {
+		repo.delete(id);
+	}
+
+	@Override
+	public void delete(Adress adr) {
+		repo.delete(adr);
+	}
+	
+	@Override
+	public void deleteAll() {
+		repo.deleteAll();
+	}
 
 	
 

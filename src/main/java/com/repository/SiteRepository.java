@@ -6,4 +6,5 @@ import com.entity.Site;
 
 public interface SiteRepository extends CrudRepository<Site, Integer>{
 	Site findByNameSite(String some);
+	void insertSite(String name);
 }

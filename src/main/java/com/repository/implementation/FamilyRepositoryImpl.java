@@ -1,12 +1,24 @@
 package com.repository.implementation;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.entity.Country;
 import com.entity.Family;
 import com.repository.FamilyRepository;
 
 @Repository
 public class FamilyRepositoryImpl implements FamilyRepository{
+	
+	private FamilyRepository repo;
+	
+	public FamilyRepository getRepo() {
+		return repo;
+	}
+
+	public void setRepo(FamilyRepository repo) {
+		this.repo = repo;
+	}
 
 	@Override
 	public long count() {
@@ -75,9 +87,22 @@ public class FamilyRepositoryImpl implements FamilyRepository{
 	}
 
 	@Override
+	@Transactional
 	public Family findBySurname(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		Family fam=null;
+		for (Family surname : repo.findAll()) {
+			if(surname.getSurname().equalsIgnoreCase(name)){
+				fam=surname;
+				return fam;
+			}else{return null;}
+		}
+		return fam;
+	}
+
+	@Override
+	@Transactional
+	public void insertFamily(String name) {
+		repo.save(new Family(name));
 	}
 
 }

@@ -7,5 +7,6 @@ import com.entity.Family;
 public interface FamilyRepository extends CrudRepository<Family, Integer>{
 	
 	Family findBySurname(String name);
+	void insertFamily(String name);
 	
 }
